@@ -4679,7 +4679,11 @@ span.badge1 {
 	border:1px solid #F44336;
 }
 .sign-in-form-top{
-	background:url(../images/3.jpg) no-repeat 0px -55px;
+	background:#99BBFF 0px -55px;
+	background: -webkit-linear-gradient(red, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(red, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(red, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(red, white); /* Standard syntax */
 	display:block;
 	min-height:150px;
 	padding:3em 0 0;
@@ -4708,7 +4712,7 @@ span.badge1 {
 }
 .signin:after {
     content: '';
-    background: url(../images/6.png) no-repeat 0px 0px;
+    background:  no-repeat 0px 0px;
     display: block;
     width: 595px;
     height: 20px;
@@ -4733,10 +4737,10 @@ span.badge1 {
   border-style: solid;
 }
 .log-input input.user {
-  background: url(../images/user.png)no-repeat 8px 10px #fff;
+  background: #c2d6d6 8px 10px;
 }
 .log-input input.lock {
-  background: url(../images/lock.png)no-repeat 8px 10px #fff;
+  background: 8px 10px #fff;
 }
 .log-input-left {
   float: left;
@@ -5105,7 +5109,7 @@ canvas#bar1 {
     width: 39%;
 }
 .signin:after {
-    background: url(../images/6.png) no-repeat 0px 0px;
+    background: #fff 0px 0px;
     width: 590px;
     background-size: 100%;
 }
@@ -5210,7 +5214,7 @@ canvas#pie {
     width: 26%;
 }
 .signin:after {
-    background: url(../images/6.png) no-repeat 0px 0px;
+    background: #fff no-repeat 0px 0px;
     width: 563px;
     background-size: 100%;
 }
@@ -5330,7 +5334,7 @@ canvas#pie {
     min-height: 1735px !important;
 }
 .signin:after {
-    background: url(../images/6.png) no-repeat 0px 0px;
+    background: #fff 0px 0px;
     width: 520px;
     background-size: 100%;
 }
@@ -6529,7 +6533,7 @@ div#page-wrapper {
     min-height: 2560px !important;
 }
 .signin:after {
-    background: url(../images/6.png) no-repeat 0px 0px;
+    background: #fff 0px 0px;
     width: 482px;
     background-size: 100%;
 }
@@ -6814,7 +6818,7 @@ span.checkbox1 {
     padding: 0.5em 1em 0.5em 1em;
 }
 .signin:after {
-    background: url(../images/6.png) no-repeat 0px 0px;
+    background: #fff 0px 0px;
     width: 405px;
     background-size: 100%;
 }
@@ -7360,7 +7364,7 @@ span.checkbox1 {
     margin-bottom: 10px;
 }
 .signin:after {
-    background: url(../images/6.png) no-repeat 0px 0px;
+    background: #fff 0px 0px;
     width: 305px;
     background-size: 100%;
 }

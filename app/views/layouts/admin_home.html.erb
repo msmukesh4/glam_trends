@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="GlamTrends, glam trends, gym nearby, salon nearby,spa nearby" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script> -->
+<%= javascript_tag("addEventListener('load', function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1);") %>
+
  <!-- Bootstrap Core CSS -->
 <!-- <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' /> -->
 <%= stylesheet_link_tag "bootstrap.min", media: "all" %>
@@ -26,22 +29,24 @@
 
 <!-- //lined-icons -->
 <!-- chart -->
-<script src="js/Chart.js"></script>
+<%= javascript_include_tag("Chart.js")%>
+<!-- <script src="/glam_trends/assets/js/Chart.js"></script> -->
 <!-- //chart -->
 <!--animate-->
 <!-- <link href="css/animate.css" rel="stylesheet" type="text/css" media="all"> -->
 <%= stylesheet_link_tag "animate", media: "all" %>
 
-<script src="js/wow.min.js"></script>
-	<script>
-		 new WOW().init();
-	</script>
+<!-- <script src="js/wow.min.js"></script> -->
+<%= javascript_include_tag("wow.min.js")%>
+	<!-- <script> new WOW().init(); </script> -->
+	<%= javascript_tag "new WOW().init()" %>
 <!--//end-animate-->
 <!----webfonts--->
 <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <!---//webfonts---> 
  <!-- Meters graphs -->
-<script src="js/jquery-1.10.2.min.js"></script>
+<!-- <script src="js/jquery-1.10.2.min.js"></script> -->
+<%= stylesheet_link_tag("jquery-1.10.2.min.js") %>
 <!-- Placed js at the end of the document so the pages load faster -->
   
 <%= csrf_meta_tags %>
@@ -55,11 +60,12 @@ onload="initMap()">
 			<!--logo and iconic logo start-->
 			<div class="logo">
 				<!-- <h1><a href="index.html">Glam <span>Trends</span></a></h1> -->
-				<h1><%= link_to('Glam <span>Trends</span>'.html_safe,'index')%></h1>
+				<h1><%= link_to(raw("Glam" +("<span>Trends</span>")),"index") %></h1>
 			</div>
 			<div class="logo-icon text-center">
 				<!-- <a href="index.html"><i class="lnr lnr-home"></i> </a> -->
-				
+
+				<%= link_to(raw("<i class='lnr lnr-home'></i>"),"index") %>
 			</div>
 
 			<!--logo and iconic logo end-->
@@ -67,14 +73,18 @@ onload="initMap()">
 
 				<!--sidebar nav start-->
 					<ul class="nav nav-pills nav-stacked custom-nav">
-						<li class="active"><a href="index.html"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
+						<li class="active"><!-- <a href="index.html"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a> -->
+							<%= link_to(raw("<i class='lnr lnr-power-switch'></i>" + ("<span>Dashboard</span>")),"index") %>
+
+						</li>
 						<li class="menu-list">
-							<a href="#"><i class="lnr lnr-cog"></i>
-								<span>Components</span></a>
-								<ul class="sub-menu-list">
-									<li><a href="grids.html">Grids</a> </li>
-									<li><a href="widgets.html">Widgets</a></li>
-								</ul>
+							<!-- <a href="#"><i class="lnr lnr-cog"></i>
+								<span>Components</span></a> -->
+							<%= link_to(raw("<i class='lnr lnr-cog'></i>" +("<span>Components</span>")),"index") %>
+							<ul class="sub-menu-list">
+								<li><!-- <a href="grids.html">Grids</a> --> <%= link_to("Google","https://google.com") %> </li>
+								<li><!-- <a href="widgets.html">Widgets</a> --> <%= link_to("Yahoo","https://yahoo.com") %></li>
+							</ul>
 						</li>
 						<li><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Forms</span></a></li>
 						<li><a href="tables.html"><i class="lnr lnr-menu"></i> <span>Tables</span></a></li>              
@@ -104,11 +114,59 @@ onload="initMap()">
 		</div>
 		<!-- left side end-->
 
+		<!-- main content start  -->
+		<div class="main-content">
+			<!-- header-starts -->
+			<div class="header-section">
+				<!--toggle button start-->
+				<a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+				<!--toggle button end-->
+				<div class="menu-right">
+					<div class="user-panel-top">
+						<div class="profile_details">
+							<ul>
+								<li class="dropdown profile_details_drop">
+									<% image_url = "1.jpg" %>
+									<% user_name = "Mukesh" %>
 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+										<div class="profile_img">	
+											<!-- <span style="background:url(images/1.jpg) no-repeat center"> </span>  -->
+											<%= image_tag("#{image_url}", :style => "background no-repeat center")%>
+											
+											 <div class="user-name">
+												<p><%= user_name%><span>Administrator</span></p>
+											 </div>
+											 <i class="lnr lnr-chevron-down"></i>
+											 <i class="lnr lnr-chevron-up"></i>
+											<div class="clearfix"></div>
+										</div>	
+									</a>
+									<ul class="dropdown-menu drp-mnu">
+										<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
+										<li> <a href="#"><i class="fa fa-user"></i>Profile</a> </li> 
+										<li> <a href="sign-up.html"><i class="fa fa-sign-out"></i> Logout</a> </li>
+									</ul>
+								</li>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //header-ends -->
 
+			<!-- yield starts -->
+			<%= yield %>
+			<!-- yield ends -->
 
-<h1> This is the admin home </h1>
-<%= yield %>
+		</div>
+		<!--footer section start-->
+		<footer>
+		   <p>&copy; Glam Trends-2016 | Design by Expert Developers</p>
+		</footer>
+        <!--footer section end-->
+	</section>
 
 </body>
 </html>

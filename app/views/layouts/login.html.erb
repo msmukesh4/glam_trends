@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GlamTrends</title>
+  <%= stylesheet_link_tag  "application", media: "all", "data-turbolinks-track" => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="GlamTrends, glam trends, gym nearby, salon nearby,spa nearby" />
+
+<!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script> -->
+<%= javascript_tag("addEventListener('load', function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1);") %>
+
+ <!-- Bootstrap Core CSS -->
+<!-- <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' /> -->
+<%= stylesheet_link_tag("bootstrap.min", media: "all") %>
+
+<!-- Custom CSS -->
+<!-- <link href="css/style.css" rel='stylesheet' type='text/css' /> -->
+<%= stylesheet_link_tag("style", media: "all") %>
+
+<!-- Graph CSS -->
+<!-- <link href="css/font-awesome.css" rel="stylesheet">  -->
+<%= stylesheet_link_tag("font-awesome", media: "all") %>
+
+<!-- jQuery -->
+<!-- lined-icons -->
+<!-- <link rel="stylesheet" href="css/icon-font.min.css" type='text/css' /> -->
+<%= stylesheet_link_tag "icon-font.min", media: "all" %>
+
+<!-- //lined-icons -->
+<!-- chart -->
+<%= javascript_include_tag("Chart.js")%>
+<!-- <script src="/glam_trends/assets/js/Chart.js"></script> -->
+<!-- //chart -->
+<!--animate-->
+<!-- <link href="css/animate.css" rel="stylesheet" type="text/css" media="all"> -->
+<%= stylesheet_link_tag("animate", media: "all")%>
+
+<!-- <script src="js/wow.min.js"></script> -->
+<%= javascript_include_tag("wow.min.js")%>
+	<!-- <script> new WOW().init(); </script> -->
+	<%= javascript_tag "new WOW().init()" %>
+<!--//end-animate-->
+<!----webfonts--->
+<link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<!---//webfonts---> 
+ <!-- Meters graphs -->
+<!-- <script src="js/jquery-1.10.2.min.js"></script> -->
+<%= stylesheet_link_tag("jquery-1.10.2.min.js") %>
+<!-- Placed js at the end of the document so the pages load faster -->
+  
+<%= csrf_meta_tags %>
+</head>
+<body class="sign-in-up">
+	<section>
+		<!-- start yield -->
+		<%= yield %>
+		<!-- end yield -->
+		
+		<!--footer section start-->
+		<footer>
+			<p>&copy; Glam Trends-2016 | Design by Expert Developers</p>
+		</footer>
+	    <!--footer section end-->
+	</section>
+
+</body>
+</html>
