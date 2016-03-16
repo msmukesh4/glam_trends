@@ -1,2 +1,46 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<% @page_title = "Users" %>
+
+<div id="page-wrapper">
+	<div class="graphs">
+		<h3 class="blank1">Users</h3>
+		<div class="xs tabls">
+			<%= link_to("Add New User", {:action => 'new'}, :class => "btn-success btn") %>
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+				<div class="panel-heading">
+					<h2>User List</h2>
+					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+				</div>
+
+				<div class="panel-body no-padding" style="display: block;">
+					<table class="table table-striped">
+						<thead>
+							<tr class="warning">
+								<th>#</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Email</th>
+								<th>Location</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @users.each do |user| %>
+								<tr>
+									<td><%= user.id %></td>
+									<td><%= user.first_name %></td>
+									<td><%= user.last_name %></td>
+									<td><%= user.email %></td>
+									<td><%= user.user_last_location %></td>
+									<td><%= link_to("Show", {:action => 'show', :id => user.id}, :class => 'action show') %>
+								        <%= link_to("Edit", {:action => 'edit', :id => user.id}, :class => 'action edit') %>
+								        <%= link_to("Delete", {:action => 'delete', :id => user.id}, :class => 'action delete') %>
+								    </td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

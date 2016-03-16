@@ -1,0 +1,77 @@
+<div class="panel-body panel-body-inputin">
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">First Name</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:first_name, :class => "form-control1")%>
+				<!-- <input type="text" class="form-control1" id="focusedinput" placeholder="Default Input"> -->
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Last Name</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:last_name, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">E-mail</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:email, :class => "form-control1")%>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-10">
+				<% if @action == "edit" %>
+					<%= f.text_field(:password, :class => "form-control1",:type => "password" ,:disabled => true)%>
+				<% else %>
+					<%= f.text_field(:password, :class => "form-control1",:type => "password" ,:disabled => false)%>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Is Owner</label>
+			<div class="col-sm-10">
+				<%= f.check_box(:is_owner, :class => "checkbox-inline1")%>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Contact Number 1</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:contact_number1, :class => "form-control1")%>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Contact Number 2</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:contact_number2, :class => "form-control1")%>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Loyality discount at</label>
+			<div class="col-sm-10">
+				<%= f.text_area(:loyality_discount_at, :class => "form-control1", :rows => 4, :cols => 50)%>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Location</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:user_last_location, :class => "form-control1")%>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Bookings</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:number_of_bookings, :class => "form-control1", :disabled=>true)%>
+			</div>
+		</div>
+
+	</div>
+</div>

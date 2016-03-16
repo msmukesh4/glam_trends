@@ -18,7 +18,7 @@
 					<p><a href="#">Click Here</a> </p>
 					<div class="clearfix"> </div>
 				</div>
-				<%= form_for(:user, :url => {:action => 'sign_in'}, :html => {:multipart => true}) do |f| %>
+				<%= form_for(:user, :url => {:action => 'validate_user'}, :html => {:multipart => true}) do |f| %>
 					<div class="log-input">
 						<div class="log-input-left">
 						   <!-- <input type="text" class="user" value="Yourname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"/> -->

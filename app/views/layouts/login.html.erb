@@ -46,7 +46,7 @@
 <!---//webfonts---> 
  <!-- Meters graphs -->
 <!-- <script src="js/jquery-1.10.2.min.js"></script> -->
-<%= stylesheet_link_tag("jquery-1.10.2.min.js") %>
+<%= javascript_include_tag("jquery-1.10.2.min.js") %>
 <!-- Placed js at the end of the document so the pages load faster -->
   
 <%= csrf_meta_tags %>
@@ -63,6 +63,9 @@
 		</footer>
 	    <!--footer section end-->
 	</section>
+	<%= javascript_include_tag("jquery.nicescroll.js") %>
+	<%= javascript_include_tag("scripts.js") %>
+	<%= javascript_include_tag("bootstrap.min.js") %>
 
 </body>
 </html>
