@@ -1,10 +1,14 @@
 class GymsController < ApplicationController
+  
+  before_action :confirm_logged_in
+  layout "admin_home", only: [:index, :show, :edit, :new, :delete]
+
   def index
-    @gyms = Gym.where(:status => "Active")
+    @gyms = Gym.all
   end
 
   def edit
-    @gym = Gym.new
+    @gym = Gym.find(params[:id])
   end
 
   def update
@@ -22,7 +26,7 @@ class GymsController < ApplicationController
   end
 
   def create
-    @gym = Gym.new(new_gym_params) 
+    @gym = Gym.new(new_gym_params)
     @gym.uuid = gen_uuid
     if @gym.save
        flash[:notice] = "gym successfully saved"
@@ -51,10 +55,10 @@ class GymsController < ApplicationController
 
   private
     def new_gym_params
-      params.require.(:gym).permit(:id, :name, :user_id, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address)
+      params.require(:gym).permit(:id, :name, :user_id, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address)
     end
 
     def edit_gym_params
-      params.require.(:gym).permit(:id, :name, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
+      params.require(:gym).permit(:id, :name, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
     end
 end

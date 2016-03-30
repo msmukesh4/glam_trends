@@ -1,2 +1,23 @@
-<h1>Spas#delete</h1>
-<p>Find me in app/views/spas/delete.html.erb</p>
+<% @page_title = "Spas" %>
+
+<div id="page-wrapper">
+	<div class="graphs">
+		<div class="xs tabls">
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+				<div class="panel-heading">
+					<h2> Delete Spa</h2>
+					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+				</div>
+				<%= form_for(:spa, :url => {:action => 'destroy', :id => @spa.id}) do |f| %>
+
+					<p>Are you sure you want to permanently delete this spa ?</p>
+
+				    <p> <div class="info"><%= @spa.name %></p>
+
+				    <%= submit_tag("Delete", :class => "btn-danger btn") %>
+
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

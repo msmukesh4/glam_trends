@@ -1,2 +1,109 @@
-<h1>Gyms#show</h1>
-<p>Find me in app/views/gyms/show.html.erb</p>
+<% @page_title = "Gym" %>
+
+<div id="page-wrapper">
+	<div class="graphs">
+		<div class="xs tabls">
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+				<div class="panel-heading">
+					<h2> Gym <%=@gym.id %></h2>
+					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><gymn class="button-icon has-bg"><i class="ti ti-angle-down"></i></gymn></div>
+				</div>
+				<div class="panel-body no-padding" style="display: block;">
+					<%= link_to("Edit sport centre", {:action => 'edit', :user => @gym.id}, :class => "btn-success btn") %> &nbsp; &nbsp; &nbsp; &nbsp;
+					<%= link_to("<< gym list", {:action => 'index'}, :class => "btn-danger btn") %> <br/> <br/>
+					<table class="table">
+						<thead>
+							<tr class="success">
+								<th>Attributes</th>
+								<th>Values</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr class="info">
+								<th> ID : </th>
+								<td><%= @gym.id %></td>
+							</tr>
+							<tr>
+								<th> name : </th>
+								<td><%= @gym.name %></td>
+							</tr>
+							<tr class="info">
+								<th>Owner Id</th>
+								<td><%= @gym.user_id %></td>
+							</tr>
+							<tr>
+								<th>Icon</th>
+								<td><%= @gym.icon %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Banner</th>
+								<td><%= @gym.banner %></td>
+							</tr>
+							<tr>
+								<th>Offer id</th>
+								<td><%= @gym.offer_id %></td>
+							</tr>
+							<tr class="info">
+								<th>Service Types ID</th>
+								<td><%= @gym.service_type_ids %></td>
+							</tr>
+							<tr>
+								<th>Timeslot ID</th>
+								<td><%= @gym.time_slot_ids %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Contact Number 1</th>
+								<td><%= @gym.contact_number1 %></td>
+							</tr>
+							
+							<tr>
+								<th>Contact Number 2 </th>
+								<td><%= @gym.contact_number2 %></td>
+							</tr>
+							
+							<tr class="info">
+								<th>Status</th>
+								<td><%= @gym.status %></td>
+							</tr>
+							
+							<tr>
+								<th> Location id</th>
+								<td><%= @gym.location_id %></td>
+							</tr>
+							
+							<tr class="info">
+								<th>Latitude</th>
+								<td><%= @gym.latitide %></td>
+							</tr>
+							<tr>
+								<th> Longitude</th>
+								<td><%= @gym.longitude %></td>
+							</tr>
+							<tr class="info">
+								<th>Booking Count</th>
+								<td><%= @gym.booking_count %></td>
+							</tr>
+							<tr>
+								<th> Caption </th>
+								<td><%= @gym.caption %></td>
+							</tr>
+							<tr class="info">
+								<th>Details	</th>
+								<td><%= @gym.details %></td>
+							</tr>
+							<tr>
+								<th>Address </th>
+								<td><%= @gym.address %></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

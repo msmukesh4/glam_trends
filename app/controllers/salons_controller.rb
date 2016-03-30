@@ -1,11 +1,14 @@
 class SalonsController < ApplicationController
   
+  before_action :confirm_logged_in
+  layout "admin_home", only: [:index, :show, :edit, :new, :delete]
+  
   def index
-    @salons = Salon.where(:status => "Active")
+    @salons = Salon.all
   end
 
   def edit
-    @salon = Salon.new
+    @salon = Salon.find(params[:id])
   end
 
   def update
@@ -52,10 +55,10 @@ class SalonsController < ApplicationController
 
   private
     def new_salon_params
-      params.require.(:salon).permit(:id, :name, :user_id, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address)
+      params.require(:salon).permit(:id, :name, :user_id, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address)
     end
 
     def edit_salon_params
-      params.require.(:salon).permit(:id, :name, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
+      params.require(:salon).permit(:id, :name, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
     end
 end

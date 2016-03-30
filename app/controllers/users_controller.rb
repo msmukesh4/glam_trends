@@ -1,67 +1,12 @@
 class UsersController < ApplicationController
   
+   before_action :confirm_logged_in
    layout "login", only: [:sign_in]
-   layout "admin_home", only: [:index, :show, :edit, :new]
+   layout "admin_home", only: [:index, :show, :edit, :new, :delete]
      
    def index
-      @users = User.where(:status => "Active")
-   end
-
-   def sign_in
-      # params.inspect
-      @user = User.new()
-   end
-
-   def validate_user
-      @user = User.new(user_sign_in_params)
-
-      if @user.status == "Active"
-         puts "user : #{@user.inspect}"
-
-         u = User.where(:email => @user.email).first
-
-         puts "user_extracted : #{u.inspect}"
-
-         if u.blank?
-            flash[:notice] = "user with email #{@user.email} doesnot exist"
-            render('sign_in')
-         else
-            d_pass = decrypt(u.password)
-            # puts "#{d_pass}"
-            if d_pass == @user.password
-               if u.is_first_logged_in
-                  if u.is_super_user
-                     @user = User.find(u.id)
-                     @user.last_logged_in = DateTime.now.utc
-                     if @user.is_first_logged_in == false
-                        @user.is_first_logged_in = true
-                     end
-                     @user.save
-                     redirect_to(:controller => 'home',:action => 'index')
-                  elsif u.is_owner
-                     @user = User.find(u.id)
-                     @user.last_logged_in = DateTime.now.utc
-                     if @user.is_first_logged_in == false
-                        @user.is_first_logged_in = true
-                     end
-                     @user.save
-                     redirect_to(:controller => 'home',:action => 'index')
-                  else
-                     flash[:notice] = "User cannot log in !!"
-                     render('sign_in')
-                  end
-               else
-                  flash[:notice] = "confirm email"
-                  render('sign_in')
-               end
-            else
-              flash[:notice] = "Incorrect password"
-              render('sign_in')
-            end
-         end
-      else
-         flash[:notice] = "User has been deleted"
-      end
+      @users = User.all
+      
    end
 
    def new
@@ -90,7 +35,8 @@ class UsersController < ApplicationController
    end
 
    def edit
-      @user = User.find(params[:user])
+      @user = User.find(params[:id])
+      puts @user.inspect
    end
 
    def update
@@ -116,13 +62,11 @@ class UsersController < ApplicationController
    end
 
    private
-      def user_sign_in_params
-         params.require(:user).permit(:id,:first_name, :last_name, :password, :email, :contact_number1, :contact_number2, :is_owner,:loyality_discount_at, :user_last_location, :number_of_bookings)
-      end
       def user_update_params
          params.require(:user).permit(:first_name, :last_name, :email, :contact_number1, :contact_number2, :loyality_discount_at, :user_last_location, :number_of_bookings)
       end
       def new_user_params
          params.require(:user).permit(:id,:first_name, :uuid, :last_name, :password, :email, :contact_number1, :contact_number2, :is_owner,:loyality_discount_at, :user_last_location, :number_of_bookings)
       end
+
 end

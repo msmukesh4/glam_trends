@@ -1,11 +1,11 @@
-<% @page_title = "Delete" %>
+<% @page_title = "Users" %>
 
 <div id="page-wrapper">
 	<div class="graphs">
 		<div class="xs tabls">
 			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
 				<div class="panel-heading">
-					<h2> Delete User %></h2>
+					<h2> Delete User</h2>
 					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
 				</div>
 				<%= form_for(:user, :url => {:action => 'destroy', :id => @user.id}) do |f| %>

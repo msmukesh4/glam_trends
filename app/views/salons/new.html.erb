@@ -1,2 +1,21 @@
-<h1>Salons#new</h1>
-<p>Find me in app/views/salons/new.html.erb</p>
+<% @page_title = "New Salon" %>
+
+<div id="page-wrapper">
+	<div class="graphs">
+		<h3 class="blank1">Create new Salon</h3>
+		<%= form_for(:salon, :url => {:action => 'create', :id => @salon.id}) do |f| %>
+
+			<% @action = "new" %>
+
+		    <%= render(:partial => "form", :locals => {:f => f}) %>
+		    <div class="row">
+		    	<div class="col-sm-8 col-sm-offset-2">
+				    
+				    <%= submit_tag("Submit", :class => "btn-primary btn") %>
+				    <%= link_to("Cancel",{:controller => 'salons', :action => 'index'}, :class => "btn-danger btn") %>
+				</div>
+			</div>
+			<br/><br/>
+		<% end %>
+	</div>
+</div>

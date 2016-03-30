@@ -1,10 +1,13 @@
 class SportCentresController < ApplicationController
+  
+  before_action :confirm_logged_in
+  layout "admin_home", only: [:index, :show, :edit, :new, :delete]
+  
   def index
-    @sport_centres = SportCentre.where(:status => "Active")
-  end
+    @sport_centres = SportCentre.all
 
   def edit
-    @sport_centre = SportCentre.new
+    @sport_centre = SportCentre.find(params[:id])
   end
 
   def update
@@ -51,10 +54,10 @@ class SportCentresController < ApplicationController
 
   private
     def new_sport_centre_params
-      params.require.(:sport_centre).permit(:id, :name, :user_id, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address)
+      params.require(:sport_centre).permit(:id, :name, :user_id, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address)
     end
 
     def edit_sport_centre_params
-      params.require.(:sport_centre).permit(:id, :name, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
+      params.require(:sport_centre).permit(:id, :name, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
     end
 end

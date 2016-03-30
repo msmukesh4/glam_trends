@@ -1,26 +1,6 @@
 GlamTrends::Application.routes.draw do
   
-  get "sport_centres/index"
-  get "sport_centres/delete"
-  get "sport_centres/edit"
-  get "sport_centres/new"
-  get "sport_centres/show"
-  get "salons/index"
-  get "salons/delete"
-  get "salons/edit"
-  get "salons/new"
-  get "salons/show"
-  get "spas/index"
-  get "spas/delete"
-  get "spas/edit"
-  get "spas/new"
-  get "spas/show"
-  get "gyms/index"
-  get "gyms/delete"
-  get "gyms/edit"
-  get "gyms/new"
-  get "gyms/show"
-  root 'users#sign_in'
+  root 'home#root'
   match ':controller(/:action(/:id))', :via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

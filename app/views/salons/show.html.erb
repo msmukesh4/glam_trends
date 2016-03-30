@@ -1,2 +1,108 @@
-<h1>Salons#show</h1>
-<p>Find me in app/views/salons/show.html.erb</p>
+<% @page_title = "Salon" %>
+
+<div id="page-wrapper">
+	<div class="graphs">
+		<div class="xs tabls">
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+				<div class="panel-heading">
+					<h2> Salon <%=@salon.id %></h2>
+					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><salonn class="button-icon has-bg"><i class="ti ti-angle-down"></i></salonn></div>
+				</div>
+				<div class="panel-body no-padding" style="display: block;">
+					<%= link_to("Edit salon", {:action => 'edit', :user => @salon.id}, :class => "btn-success btn") %> &nbsp; &nbsp; &nbsp; &nbsp;
+					<%= link_to("<< salon list", {:action => 'index'}, :class => "btn-danger btn") %> <br/> <br/>
+					<table class="table">
+						<thead>
+							<tr class="success">
+								<th>Attributes</th>
+								<th>Values</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr class="info">
+								<th> ID : </th>
+								<td><%= @salon.id %></td>
+							</tr>
+							<tr>
+								<th> name : </th>
+								<td><%= @salon.name %></td>
+							</tr>
+							<tr class="info">
+								<th>Owner Id</th>
+								<td><%= @salon.user_id %></td>
+							</tr>
+							<tr>
+								<th>Icon</th>
+								<td><%= @salon.icon %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Banner</th>
+								<td><%= @salon.banner %></td>
+							</tr>
+							<tr>
+								<th>Offer id</th>
+								<td><%= @salon.offer_id %></td>
+							</tr>
+							<tr class="info">
+								<th>Service Types ID</th>
+								<td><%= @salon.service_type_ids %></td>
+							</tr>
+							<tr>
+								<th>Timeslot ID</th>
+								<td><%= @salon.time_slot_ids %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Contact Number 1</th>
+								<td><%= @salon.contact_number1 %></td>
+							</tr>
+							
+							<tr>
+								<th>Contact Number 2 </th>
+								<td><%= @salon.contact_number2 %></td>
+							</tr>
+							
+							<tr class="info">
+								<th>Status</th>
+								<td><%= @salon.status %></td>
+							</tr>
+							
+							<tr>
+								<th> Location id</th>
+								<td><%= @salon.location_id %></td>
+							</tr>
+							<tr class="info">
+								<th>Latitude</th>
+								<td><%= @salon.latitide %></td>
+							</tr>
+							<tr>
+								<th> Longitude</th>
+								<td><%= @salon.longitude %></td>
+							</tr>
+							<tr class="info">
+								<th>Booking Count</th>
+								<td><%= @salon.booking_count %></td>
+							</tr>
+							<tr>
+								<th> Caption </th>
+								<td><%= @salon.caption %></td>
+							</tr>
+							<tr class="info">
+								<th>Details	</th>
+								<td><%= @salon.details %></td>
+							</tr>
+							<tr>
+								<th>Address </th>
+								<td><%= @salon.address %></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

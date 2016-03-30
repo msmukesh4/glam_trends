@@ -1,0 +1,121 @@
+<% if @gym.errors.any? %>
+	<h4> There are errors in the form </h4>
+	<ul>
+	  <% @gym.errors.full_messages.each do |msg| %>
+	    <li><%= msg %></li>
+	  <% end %>
+	</ul>
+<% end %>
+
+<div class="panel-body panel-body-inputin">
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:name, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Owner User ID</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:user_id, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Icon</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:icon, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Banner</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:banner, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Offer ID</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:offer_id, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Service type IDs</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:service_type_ids, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Time slot IDs</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:time_slot_ids, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Is Active</label>
+			<div class="col-sm-10">
+				<% if @gym.status == "Active" %>
+					<%= f.check_box(:status, :class => "checkbox-inline1",:checked => true) %>
+				<% else %>
+					<%= f.check_box(:status, :class => "checkbox-inline1", :checked => false)%>
+				<% end %>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Contact Number 1</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:contact_number1, :class => "form-control1")%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Contact Number 2</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:contact_number2, :class => "form-control1")%>	
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">location Id</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:location_id, :class => "form-control1")%>	
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Latitude</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:latitide, :class => "form-control1")%>	
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Longitude</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:longitude, :class => "form-control1")%>	
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Booking count</label>
+			<div class="col-sm-10">
+				<%= f.text_field(:booking_count, :class => "form-control1")%>	
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Caption</label>
+			<div class="col-sm-10">
+				<%= f.text_area(:caption, :class => "form-control1", :rows => 2, :cols => 50)%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Details</label>
+			<div class="col-sm-10">
+				<%= f.text_area(:details, :class => "form-control1", :rows => 4, :cols => 50)%>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="focusedinput" class="col-sm-2 control-label">Address</label>
+			<div class="col-sm-10">
+				<%= f.text_area(:address, :class => "form-control1", :rows => 3, :cols => 50)%>
+			</div>
+		</div>
+
+	</div>
+</div>

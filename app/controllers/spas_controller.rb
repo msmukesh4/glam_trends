@@ -1,13 +1,14 @@
 class SpasController < ApplicationController
 
-  layout "admin_home", only: [:index, :show, :edit, :new]
+  before_action :confirm_logged_in
+  layout "admin_home", only: [:index, :show, :edit, :new, :delete]
 
   def index
-    @spas = Spa.where(:status => "Active")
+    @spas = Spa.all
   end
 
   def edit
-    @spa = Spa.new
+    @spa = Spa.find(params[:id])
   end
 
   def update
@@ -25,7 +26,9 @@ class SpasController < ApplicationController
   end
 
   def create
-    @spa = Spa.new(new_spa_params) 
+    @spa = Spa.new(new_spa_params)
+    puts "================================================================" 
+    puts @spa.inspect
     @spa.uuid = gen_uuid
     if @spa.save
        flash[:notice] = "Spa successfully saved"
@@ -54,10 +57,10 @@ class SpasController < ApplicationController
 
   private
     def new_spa_params
-      params.require.(:spa).permit(:id, :name, :user_id, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address)
+      params.require(:spa).permit(:id, :uuid, :name, :user_id, :status ,:icon, :banner, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2, :location_id, :latitide, :logitude, :caption, :details, :address, :booking_count, :offer_id)
     end
 
     def edit_spa_params
-      params.require.(:spa).permit(:id, :name, :icon, :banner, :uuid, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
+      params.require(:spa).permit(:name, :icon, :banner, :service_type_ids, :time_slot_ids, :contact_number1, :contact_number2,:location_id,:latitide, :logitude, :caption, :details, :address, :status, :booking_count, :user_id)
     end
 end

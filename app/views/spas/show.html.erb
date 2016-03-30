@@ -1,2 +1,108 @@
-<h1>Spas#show</h1>
-<p>Find me in app/views/spas/show.html.erb</p>
+<% @page_title = "Spa" %>
+
+<div id="page-wrapper">
+	<div class="graphs">
+		<div class="xs tabls">
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+				<div class="panel-heading">
+					<h2> Spa <%=@spa.id %></h2>
+					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+				</div>
+				<div class="panel-body no-padding" style="display: block;">
+					<%= link_to("Edit sport centre", {:action => 'edit', :user => @spa.id}, :class => "btn-success btn") %> &nbsp; &nbsp; &nbsp; &nbsp;
+					<%= link_to("<< spa list", {:action => 'index'}, :class => "btn-danger btn") %> <br/> <br/>
+					<table class="table">
+						<thead>
+							<tr class="success">
+								<th>Attributes</th>
+								<th>Values</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr class="info">
+								<th> ID : </th>
+								<td><%= @spa.id %></td>
+							</tr>
+							<tr>
+								<th> name : </th>
+								<td><%= @spa.name %></td>
+							</tr>
+							<tr class="info">
+								<th>Owner Id</th>
+								<td><%= @spa.user_id %></td>
+							</tr>
+							<tr>
+								<th>Icon</th>
+								<td><%= @spa.icon %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Banner</th>
+								<td><%= @spa.banner %></td>
+							</tr>
+							<tr>
+								<th>Offer id</th>
+								<td><%= @spa.offer_id %></td>
+							</tr>
+							<tr class="info">
+								<th>Service Types ID</th>
+								<td><%= @spa.service_type_ids %></td>
+							</tr>
+							<tr>
+								<th>Timeslot ID</th>
+								<td><%= @spa.time_slot_ids %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Contact Number 1</th>
+								<td><%= @spa.contact_number1 %></td>
+							</tr>
+							
+							<tr>
+								<th>Contact Number 2 </th>
+								<td><%= @spa.contact_number2 %></td>
+							</tr>
+							
+							<tr class="info">
+								<th>Status</th>
+								<td><%= @spa.status %></td>
+							</tr>
+							
+							<tr>
+								<th> Location id</th>
+								<td><%= @spa.location_id %></td>
+							</tr>
+							<tr class="info">
+								<th>Latitude</th>
+								<td><%= @spa.latitide %></td>
+							</tr>
+							<tr>
+								<th> Longitude</th>
+								<td><%= @spa.longitude %></td>
+							</tr>
+							<tr class="info">
+								<th>Booking Count</th>
+								<td><%= @spa.booking_count %></td>
+							</tr>
+							<tr>
+								<th> Caption </th>
+								<td><%= @spa.caption %></td>
+							</tr>
+							<tr class="info">
+								<th>Details	</th>
+								<td><%= @spa.details %></td>
+							</tr>
+							<tr>
+								<th>Address </th>
+								<td><%= @spa.address %></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

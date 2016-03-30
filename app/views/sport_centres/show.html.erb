@@ -1,2 +1,108 @@
-<h1>SportCentres#show</h1>
-<p>Find me in app/views/sport_centres/show.html.erb</p>
+<% @page_title = "Sport Centre" %>
+
+<div id="page-wrapper">
+	<div class="graphs">
+		<div class="xs tabls">
+			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+				<div class="panel-heading">
+					<h2> Sport centre <%=@sport_centre.id %></h2>
+					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+				</div>
+				<div class="panel-body no-padding" style="display: block;">
+					<%= link_to("Edit sport centre", {:action => 'edit', :user => @sport_centre.id}, :class => "btn-success btn") %> &nbsp; &nbsp; &nbsp; &nbsp;
+					<%= link_to("<< sport centre List", {:action => 'index'}, :class => "btn-danger btn") %> <br/> <br/>
+					<table class="table">
+						<thead>
+							<tr class="success">
+								<th>Attributes</th>
+								<th>Values</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr class="info">
+								<th> sport centre ID : </th>
+								<td><%= @sport_centre.id %></td>
+							</tr>
+							<tr>
+								<th>Sport centre name : </th>
+								<td><%= @sport_centre.name %></td>
+							</tr>
+							<tr class="info">
+								<th>Owner Id</th>
+								<td><%= @sport_centre.user_id %></td>
+							</tr>
+							<tr>
+								<th>Icon</th>
+								<td><%= @sport_centre.icon %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Banner</th>
+								<td><%= @sport_centre.banner %></td>
+							</tr>
+							<tr>
+								<th>Offer id</th>
+								<td><%= @sport_centre.offer_id %></td>
+							</tr>
+							<tr class="info">
+								<th>Service Types ID</th>
+								<td><%= @sport_centre.service_type_ids %></td>
+							</tr>
+							<tr>
+								<th>Timeslot ID</th>
+								<td><%= @sport_centre.time_slot_ids %></td>
+							</tr>
+
+							<tr class="info">
+								<th>Contact Number 1</th>
+								<td><%= @sport_centre.contact_number1 %></td>
+							</tr>
+							
+							<tr>
+								<th>Contact Number 2 </th>
+								<td><%= @sport_centre.contact_number2 %></td>
+							</tr>
+							
+							<tr class="info">
+								<th>Status</th>
+								<td><%= @sport_centre.status %></td>
+							</tr>
+							
+							<tr>
+								<th> Location id</th>
+								<td><%= @sport_centre.location_id %></td>
+							</tr>
+							<tr class="info">
+								<th>Latitude</th>
+								<td><%= @sport_centre.latitide %></td>
+							</tr>
+							<tr>
+								<th> Longitude</th>
+								<td><%= @sport_centre.longitude %></td>
+							</tr>
+							<tr class="info">
+								<th>Booking Count</th>
+								<td><%= @sport_centre.booking_count %></td>
+							</tr>
+							<tr>
+								<th> Caption </th>
+								<td><%= @sport_centre.caption %></td>
+							</tr>
+							<tr class="info">
+								<th>Details	</th>
+								<td><%= @sport_centre.details %></td>
+							</tr>
+							<tr>
+								<th>Address </th>
+								<td><%= @sport_centre.address %></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

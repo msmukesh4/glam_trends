@@ -14,3 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/app/config/initializers/secret_token
+/app/config/initializers/sesson_store
+Gemfile.lock
+
