@@ -3,11 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # for cancan ability.rb
+  # this will force the controllers to check the ability for each action
+  check_authorization
+  skip_authorization_check :only => [:gen_uuid, :encrypt, :confirm_logged_in]
+
   helper_method :gen_uuid, :encrypt, :decrypt
 
   ALGORITHM = 'AES-128-ECB'
   KEY = "abckey123aaaaaa1" # must me >= 16
 
+  # to generate uuid
+  # format uuid = 201503123452ASasle
   def gen_uuid(sub_string = nil)
   	u = ""
   	now = DateTime.now.utc.to_s(:number)
@@ -24,6 +31,7 @@ class ApplicationController < ActionController::Base
   	uuid
   end
 
+  # this will ecript the data based on the key and Algorithm type
   def encrypt(data)
     
     cipher = OpenSSL::Cipher.new(ALGORITHM)
@@ -35,6 +43,7 @@ class ApplicationController < ActionController::Base
     encrypted_data
   end
 
+  # this will ecript the data based on the key and Algorithm type
   def decrypt(data)
 
     cipher = OpenSSL::Cipher.new(ALGORITHM)
@@ -45,6 +54,11 @@ class ApplicationController < ActionController::Base
     decrypted_data << cipher.final()
       	
     decrypted_data
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    pust "Access Denied !! 302"
+    redirect_to(:controller => 'access', :action => 'index')
   end
 
 

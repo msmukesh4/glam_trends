@@ -11,6 +11,8 @@ gem 'sass-rails', '~> 4.0.0'
 
 gem 'safe_attributes'
 
+gem 'cancan'
+
 # Use Uglifier as compressor for JavaScript assets
 # gem 'uglifier', '>= 1.3.0'
 

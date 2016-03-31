@@ -2,19 +2,22 @@ class AccessController < ApplicationController
   
    layout "login", only: [:login]
    before_action :confirm_logged_in, :except	=> [:login, :validate_user, :index, :logout ]
+   skip_authorization_check :only => [:index, :login, :validate_user, :logout]
    
    def login
-   	@user = User.new()
+   	@user = User.new
 	end
 
 	def index
-		redirect_to(:action => 'validate_user')
+		
 	end
 
 	# function to validate user
    def validate_user
    	authorized_user = nil
       @user = User.new(user_sign_in_params)
+      # @user = User.find(:id => temp_user.id)
+      # @user = User.find(params[:id])
 
       if @user.status == "Active"
          puts "user : #{@user.inspect}"
@@ -54,7 +57,6 @@ class AccessController < ApplicationController
                end
             else
               flash[:notice] = "Incorrect password"
-              
             end
          end
       else
@@ -66,10 +68,14 @@ class AccessController < ApplicationController
       	session[:email] = authorized_user.email
       	
 	      flash[:notice] = "You are now logged in."
-	      redirect_to(:controller => 'home',:action => 'index')
+	      redirect_to(:controller => 'home', :action => 'index')
       else
-      	@user.failed_attempts += 1
-         @user.save
+         if !u.blank?
+            puts "increasing failed attempts #{@user.failed_attempts}"
+         	u.failed_attempts += 1
+            puts "failed_attempts : #{@user.failed_attempts}"
+            u.save
+         end
          render('login')
       end
    end
