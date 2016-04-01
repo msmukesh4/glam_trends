@@ -6,6 +6,7 @@ class AccessController < ApplicationController
    
    def login
    	@user = User.new
+      # flash[:notice] = ""
 	end
 
 	def index
@@ -87,7 +88,6 @@ class AccessController < ApplicationController
       	
 	   flash[:notice] = "Logged out"
 	   redirect_to(:action => "login")
-   	
    end
 
    private

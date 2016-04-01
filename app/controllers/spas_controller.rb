@@ -1,6 +1,7 @@
 class SpasController < ApplicationController
 
   before_action :confirm_logged_in
+  # load_and_authorize_resource
   layout "admin_home", only: [:index, :show, :edit, :new, :delete]
 
   def index

@@ -39,7 +39,7 @@ class Ability
 
 
     if user.is_super_user?
-        can :all, :all
+        can :manage, :all
     elsif user.is_owner?
         can :manage, Spa, user_id => user.id
         can :manage, Gym, user_id => user.id

@@ -5,8 +5,14 @@ class ApplicationController < ActionController::Base
 
   # for cancan ability.rb
   # this will force the controllers to check the ability for each action
-  check_authorization
+  # check_authorization
   skip_authorization_check :only => [:gen_uuid, :encrypt, :confirm_logged_in]
+  rescue_from CanCan::AccessDenied do |exception|
+    pust "Access Denied !! 302"
+    redirect_to(:controller => 'access', :action => 'index')
+  end
+
+  # alias_method :user, :current_user
 
   helper_method :gen_uuid, :encrypt, :decrypt
 
@@ -56,16 +62,15 @@ class ApplicationController < ActionController::Base
     decrypted_data
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    pust "Access Denied !! 302"
-    redirect_to(:controller => 'access', :action => 'index')
-  end
+  # def current_ability
+  #   @current_ability ||= Ability.new(current_member)
+  # end
 
 
   private
 
     def confirm_logged_in
-      puts session.inspect
+      # puts session.inspect
       unless session[:user_id]
         flash[:notice] = "Please login !!"
         redirect_to(:controller => 'access', :action => 'login')
