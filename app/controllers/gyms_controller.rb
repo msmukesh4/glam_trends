@@ -14,8 +14,8 @@ class GymsController < ApplicationController
   def update
     @gym =  Gym.find(params[:id])
       if @gym.update_attributes(edit_gym_params)
-         flash[:notice] = "gym updated successfully"
-         redirect_to(:action => 'index', :id => @gym.id)
+        flash[:notice] = "gym updated successfully"
+        redirect_to(:action => 'index', :id => @gym.id)
       else
         render('edit')
       end

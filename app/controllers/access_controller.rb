@@ -2,9 +2,10 @@ class AccessController < ApplicationController
   
    layout "login", only: [:login]
    before_action :confirm_logged_in, :except	=> [:login, :validate_user, :index, :logout ]
-   skip_authorization_check :only => [:index, :login, :validate_user, :logout]
+   # skip_authorization_check :only => [:index, :login, :validate_user, :logout]
    
    def login
+      
    	@user = User.new
       # flash[:notice] = ""
 	end

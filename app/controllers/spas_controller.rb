@@ -1,11 +1,11 @@
 class SpasController < ApplicationController
 
-  before_action :confirm_logged_in
-  # load_and_authorize_resource
+  # before_action :confirm_logged_in
   layout "admin_home", only: [:index, :show, :edit, :new, :delete]
 
   def index
     @spas = Spa.all
+    # render :json => @spas
   end
 
   def edit
@@ -15,8 +15,8 @@ class SpasController < ApplicationController
   def update
     @spa =  Spa.find(params[:id])
       if @spa.update_attributes(edit_spa_params)
-         flash[:notice] = "Spa updated successfully"
-         redirect_to(:action => 'index', :id => @spa.id)
+        flash[:notice] = "Spa updated successfully"
+        redirect_to(:action => 'index', :id => @spa.id)
       else
         render('edit')
       end
@@ -32,11 +32,11 @@ class SpasController < ApplicationController
     puts @spa.inspect
     @spa.uuid = gen_uuid
     if @spa.save
-       flash[:notice] = "Spa successfully saved"
-       redirect_to(:action => 'index')
+      flash[:notice] = "Spa successfully saved"
+      redirect_to(:action => 'index')
     else
-       flash[:notice] = "Spa creation unsuccessful"
-       render('new')
+      flash[:notice] = "Spa creation unsuccessful"
+      render('new')
     end
   end
 

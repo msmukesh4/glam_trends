@@ -3,21 +3,24 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # for cancan ability.rb
-  # this will force the controllers to check the ability for each action
-  # check_authorization
-  skip_authorization_check :only => [:gen_uuid, :encrypt, :confirm_logged_in]
-  rescue_from CanCan::AccessDenied do |exception|
-    pust "Access Denied !! 302"
-    redirect_to(:controller => 'access', :action => 'index')
-  end
+  # for doorkeeper oauth
+  # before_action :doorkeeper_authorize!, only:[:   ]
 
-  # alias_method :user, :current_user
+  # skip_authorization_check :only => [:gen_uuid, :encrypt, :confirm_logged_in]
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   put "Access Denied !! 302"
+  #   redirect_to(:controller => 'access', :action => 'index')
+  # end
+  
 
   helper_method :gen_uuid, :encrypt, :decrypt
 
   ALGORITHM = 'AES-128-ECB'
   KEY = "abckey123aaaaaa1" # must me >= 16
+
+  def demo
+    render json: User.find(doorkeeper_token.resource_owner_id).as_json
+  end
 
   # to generate uuid
   # format uuid = 201503123452ASasle
