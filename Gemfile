@@ -15,7 +15,7 @@ gem 'safe_attributes'
 
 # gem 'cancan'
 
-gem 'devise'
+# gem 'devise'
 
 gem 'json'
 

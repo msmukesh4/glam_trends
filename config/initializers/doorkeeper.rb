@@ -21,7 +21,11 @@ Doorkeeper.configure do
   admin_authenticator do
     # Put your admin authentication logic here.
     # Example implementation:
-    User.find_by_id(session[:user_id]).is_super_user? || redirect_to('/home/index')
+    begin
+      User.find_by_id(session[:user_id]).is_super_user? || redirect_to('/home/index')
+    rescue Exception => e
+      redirect_to('access/login')
+    end
   end
 
   resource_owner_from_credentials do 

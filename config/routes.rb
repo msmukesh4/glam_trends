@@ -1,11 +1,21 @@
 GlamTrends::Application.routes.draw do
   
-  use_doorkeeper
+  # use_doorkeeper
   root to: 'access#index'
 
   ### Start API routes ###
 
-  get '/demo' => 'application#demo'
+   namespace :v1, defaults: {format: 'json'} do
+      
+      namespace :account do
+         resource :session do
+            get 'demo'
+         end
+      end
+
+   end
+
+  ### End API routes ###
 
 
 

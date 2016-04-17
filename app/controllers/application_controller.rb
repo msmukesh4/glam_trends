@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   #   put "Access Denied !! 302"
   #   redirect_to(:controller => 'access', :action => 'index')
   # end
-  
 
   helper_method :gen_uuid, :encrypt, :decrypt
 
