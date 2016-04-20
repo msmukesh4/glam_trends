@@ -13,6 +13,8 @@ gem 'sass-rails', '~> 4.0.0'
 
 gem 'safe_attributes'
 
+gem 'httparty'
+
 # gem 'cancan'
 
 # gem 'devise'

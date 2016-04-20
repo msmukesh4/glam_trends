@@ -10,7 +10,20 @@ GlamTrends::Application.routes.draw do
       namespace :account do
          resource :session do
             get 'demo'
+            post 'login'
          end
+
+         resource :register do
+            post 'user'
+         end
+
+         resource :profile do
+            get 'user_details'
+            post 'edit_user'
+            post 'update_password'
+            get 'user_bookings'
+         end
+
       end
 
    end
