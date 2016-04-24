@@ -3,7 +3,8 @@ class CreateDaySlots < ActiveRecord::Migration
     create_table :day_slots do |t|
 
     	t.string :day
-      t.timestamps
+      	t.timestamps
+      	
     end
   end
 end

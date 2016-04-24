@@ -8,13 +8,12 @@ class CreateSpas < ActiveRecord::Migration
     	t.string :banner, :limit =>500
     	t.string :uuid, :limit => 20, :null => false
     	t.integer :offer_id, :default => 0
-    	t.string :service_type_ids, :default => "[]"
     	t.string :time_slot_ids, :default => "[]"
         t.string :status, :default => "Active"
     	t.string :contact_number1, :limit => 10
     	t.string :contact_number2, :limit => 10
     	t.integer :location_id
-    	t.decimal :latitide, :default => 0.0, :precision => 9, :scale => 6
+    	t.decimal :latitude, :default => 0.0, :precision => 9, :scale => 6
     	t.decimal :longitude, :default => 0.0, :precision => 9, :scale => 6
     	t.integer :booking_count, :default => 0
     	t.string :caption, :default => ""

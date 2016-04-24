@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420191530) do
+ActiveRecord::Schema.define(version: 20160424181815) do
 
   create_table "bookings", force: true do |t|
-    t.string   "user_uuid",     limit: 20,                null: false
-    t.string   "service_uuid",  limit: 20,                null: false
+    t.string   "uuid",          limit: 20,                    null: false
+    t.string   "user_uuid",     limit: 20,                    null: false
+    t.string   "service_uuid",  limit: 20,                    null: false
     t.string   "time_slots",               default: "[]"
     t.string   "booking_token"
-    t.string   "status"
+    t.integer  "cost"
+    t.string   "status",                   default: "Active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "service_name"
-    t.string   "service_type"
   end
 
   create_table "day_slots", force: true do |t|
@@ -60,31 +60,24 @@ ActiveRecord::Schema.define(version: 20160420191530) do
     t.datetime "updated_at"
   end
 
-  create_table "gym_services", force: true do |t|
-    t.string   "service_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "gyms", force: true do |t|
-    t.string   "name",                                                                     null: false
-    t.integer  "user_id",                                                                  null: false
-    t.string   "icon",             limit: 500
-    t.string   "banner",           limit: 500
-    t.string   "uuid",             limit: 20,                                              null: false
-    t.integer  "offer_id",                                              default: 0
-    t.string   "service_type_ids",                                      default: "[]"
-    t.string   "time_slot_ids",                                         default: "[]"
-    t.string   "status",                                                default: "Active"
-    t.string   "contact_number1",  limit: 10
-    t.string   "contact_number2",  limit: 10
+    t.string   "name",                                                                    null: false
+    t.integer  "user_id",                                                                 null: false
+    t.string   "icon",            limit: 500
+    t.string   "banner",          limit: 500
+    t.string   "uuid",            limit: 20,                                              null: false
+    t.integer  "offer_id",                                             default: 0
+    t.string   "time_slot_ids",                                        default: "[]"
+    t.string   "status",                                               default: "Active"
+    t.string   "contact_number1", limit: 10
+    t.string   "contact_number2", limit: 10
     t.integer  "location_id"
-    t.decimal  "latitide",                      precision: 9, scale: 6, default: 0.0
-    t.decimal  "longitude",                     precision: 9, scale: 6, default: 0.0
-    t.integer  "booking_count",                                         default: 0
-    t.string   "caption",                                               default: ""
-    t.string   "details",          limit: 1000,                         default: ""
-    t.string   "address",          limit: 1000
+    t.decimal  "latitude",                     precision: 9, scale: 6, default: 0.0
+    t.decimal  "longitude",                    precision: 9, scale: 6, default: 0.0
+    t.integer  "booking_count",                                        default: 0
+    t.string   "caption",                                              default: ""
+    t.string   "details",         limit: 1000,                         default: ""
+    t.string   "address",         limit: 1000
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -151,31 +144,24 @@ ActiveRecord::Schema.define(version: 20160420191530) do
     t.datetime "updated_at"
   end
 
-  create_table "salon_services", force: true do |t|
-    t.string   "service_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "salons", force: true do |t|
-    t.string   "name",                                                                     null: false
-    t.integer  "user_id",                                                                  null: false
-    t.string   "icon",             limit: 500
-    t.string   "banner",           limit: 500
-    t.string   "uuid",             limit: 20,                                              null: false
-    t.integer  "offer_id",                                              default: 0
-    t.string   "service_type_ids",                                      default: "[]"
-    t.string   "time_slot_ids",                                         default: "[]"
-    t.string   "status",                                                default: "Active"
-    t.string   "contact_number1",  limit: 10
-    t.string   "contact_number2",  limit: 10
+    t.string   "name",                                                                    null: false
+    t.integer  "user_id",                                                                 null: false
+    t.string   "icon",            limit: 500
+    t.string   "banner",          limit: 500
+    t.string   "uuid",            limit: 20,                                              null: false
+    t.integer  "offer_id",                                             default: 0
+    t.string   "time_slot_ids",                                        default: "[]"
+    t.string   "status",                                               default: "Active"
+    t.string   "contact_number1", limit: 10
+    t.string   "contact_number2", limit: 10
     t.integer  "location_id"
-    t.decimal  "latitide",                      precision: 9, scale: 6, default: 0.0
-    t.decimal  "longitude",                     precision: 9, scale: 6, default: 0.0
-    t.integer  "booking_count",                                         default: 0
-    t.string   "caption",                                               default: ""
-    t.string   "details",          limit: 1000,                         default: ""
-    t.string   "address",          limit: 1000
+    t.decimal  "latitude",                     precision: 9, scale: 6, default: 0.0
+    t.decimal  "longitude",                    precision: 9, scale: 6, default: 0.0
+    t.integer  "booking_count",                                        default: 0
+    t.string   "caption",                                              default: ""
+    t.string   "details",         limit: 1000,                         default: ""
+    t.string   "address",         limit: 1000
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -184,31 +170,40 @@ ActiveRecord::Schema.define(version: 20160420191530) do
   add_index "salons", ["offer_id"], name: "index_salons_on_offer_id", using: :btree
   add_index "salons", ["user_id"], name: "index_salons_on_user_id", using: :btree
 
-  create_table "spa_services", force: true do |t|
-    t.string   "service_name"
+  create_table "service_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: true do |t|
+    t.string   "uuid",         limit: 20, null: false
+    t.string   "shop_uuid",    limit: 20, null: false
+    t.integer  "service_type",            null: false
+    t.string   "name"
+    t.integer  "cost",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "spas", force: true do |t|
-    t.string   "name",                                                                     null: false
-    t.integer  "user_id",                                                                  null: false
-    t.string   "icon",             limit: 500
-    t.string   "banner",           limit: 500
-    t.string   "uuid",             limit: 20,                                              null: false
-    t.integer  "offer_id",                                              default: 0
-    t.string   "service_type_ids",                                      default: "[]"
-    t.string   "time_slot_ids",                                         default: "[]"
-    t.string   "status",                                                default: "Active"
-    t.string   "contact_number1",  limit: 10
-    t.string   "contact_number2",  limit: 10
+    t.string   "name",                                                                    null: false
+    t.integer  "user_id",                                                                 null: false
+    t.string   "icon",            limit: 500
+    t.string   "banner",          limit: 500
+    t.string   "uuid",            limit: 20,                                              null: false
+    t.integer  "offer_id",                                             default: 0
+    t.string   "time_slot_ids",                                        default: "[]"
+    t.string   "status",                                               default: "Active"
+    t.string   "contact_number1", limit: 10
+    t.string   "contact_number2", limit: 10
     t.integer  "location_id"
-    t.decimal  "latitide",                      precision: 9, scale: 6, default: 0.0
-    t.decimal  "longitude",                     precision: 9, scale: 6, default: 0.0
-    t.integer  "booking_count",                                         default: 0
-    t.string   "caption",                                               default: ""
-    t.string   "details",          limit: 1000,                         default: ""
-    t.string   "address",          limit: 1000
+    t.decimal  "latitude",                     precision: 9, scale: 6, default: 0.0
+    t.decimal  "longitude",                    precision: 9, scale: 6, default: 0.0
+    t.integer  "booking_count",                                        default: 0
+    t.string   "caption",                                              default: ""
+    t.string   "details",         limit: 1000,                         default: ""
+    t.string   "address",         limit: 1000
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -218,24 +213,23 @@ ActiveRecord::Schema.define(version: 20160420191530) do
   add_index "spas", ["user_id"], name: "index_spas_on_user_id", using: :btree
 
   create_table "sport_centres", force: true do |t|
-    t.string   "name",                                                                     null: false
-    t.integer  "user_id",                                                                  null: false
-    t.string   "icon",             limit: 500
-    t.string   "banner",           limit: 500
-    t.string   "uuid",             limit: 20,                                              null: false
-    t.integer  "offer_id",                                              default: 0
-    t.string   "service_type_ids",                                      default: "[]"
-    t.string   "time_slot_ids",                                         default: "[]"
-    t.string   "status",                                                default: "Active"
-    t.string   "contact_number1",  limit: 10
-    t.string   "contact_number2",  limit: 10
+    t.string   "name",                                                                    null: false
+    t.integer  "user_id",                                                                 null: false
+    t.string   "icon",            limit: 500
+    t.string   "banner",          limit: 500
+    t.string   "uuid",            limit: 20,                                              null: false
+    t.integer  "offer_id",                                             default: 0
+    t.string   "time_slot_ids",                                        default: "[]"
+    t.string   "status",                                               default: "Active"
+    t.string   "contact_number1", limit: 10
+    t.string   "contact_number2", limit: 10
     t.integer  "location_id"
-    t.decimal  "latitide",                      precision: 9, scale: 6, default: 0.0
-    t.decimal  "longitude",                     precision: 9, scale: 6, default: 0.0
-    t.integer  "booking_count",                                         default: 0
-    t.string   "caption",                                               default: ""
-    t.string   "details",          limit: 1000,                         default: ""
-    t.string   "address",          limit: 1000
+    t.decimal  "latitude",                     precision: 9, scale: 6, default: 0.0
+    t.decimal  "longitude",                    precision: 9, scale: 6, default: 0.0
+    t.integer  "booking_count",                                        default: 0
+    t.string   "caption",                                              default: ""
+    t.string   "details",         limit: 1000,                         default: ""
+    t.string   "address",         limit: 1000
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -243,12 +237,6 @@ ActiveRecord::Schema.define(version: 20160420191530) do
   add_index "sport_centres", ["location_id"], name: "index_sport_centres_on_location_id", using: :btree
   add_index "sport_centres", ["offer_id"], name: "index_sport_centres_on_offer_id", using: :btree
   add_index "sport_centres", ["user_id"], name: "index_sport_centres_on_user_id", using: :btree
-
-  create_table "sport_services", force: true do |t|
-    t.string   "service_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "time_slots", force: true do |t|
     t.string   "time_frame"

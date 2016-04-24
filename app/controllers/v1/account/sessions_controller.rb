@@ -46,6 +46,7 @@ class V1::Account::SessionsController < V1::BaseController
 					if !u.is_first_logged_in
 						u.is_first_logged_in = true
 					end
+					
 					@user_uid = u.uuid
 					u.last_logged_in = DateTime.now.utc
 					return true
