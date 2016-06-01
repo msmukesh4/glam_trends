@@ -4,9 +4,9 @@ class CreateBookings < ActiveRecord::Migration
 
       t.string :uuid, :null => false, :limit => 20
     	t.string :user_uuid, :null => false, :limit => 20
-    	t.string :service_uuid, :null => false, :limit => 20
+    	t.string :service_uuid, :null => false, :limit => 20  #service table uuid reference
     	t.string :time_slots, :default => "[]"
-    	t.string :booking_token
+    	t.string :booking_token                               #auto generated token
       t.integer :cost
     	t.string :status, :default => "Active"
       t.timestamps

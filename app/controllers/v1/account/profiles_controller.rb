@@ -85,23 +85,62 @@ class V1::Account::ProfilesController < V1::BaseController
 	end
 
 	def user_bookings
-		if params[:uid]
-			user = User.where(:uuid => params[:uid]).first
+		booking_array = []
+		if params[:u_uid]
+			user = User.where(:uuid => params[:u_uid]).first
 			if user
-				bookings = Booking.where(:user_uuid => user.uuid)
-				if bookings
-					bookings.each do |booking|
-						# bookings.service_type == "gym"
+				# booking details
+				if params[:b_uid]
+					if booking_details(params[:b_uid])
+						ts = @booking.time_slots.tr('[]', '')
+						ts_start = ts.split(',').first
+						ts_end = ts.split(',').last
+						booking_duration = ts_end.to_i - ts_start.to_i
+						e_time = @booking.date+booking_duration.hours
+						booking_json = {
+							:shop_name => @shop.name,
+							:shop_location_id => @shop.location_id,
+							:shop_address => @shop.address,
+							:shop_contact_number1 => @shop.contact_number1,
+							:shop_contact_number2 => @shop.contact_number2,
+							:shop_latitude => @shop.latitude,
+							:shop_longitude => @shop.longitude,
+							:service_id => @service_type.id,
+							:service_name => @service_type.name,
+							:start_time => @booking.date,
+							:end_time => e_time,
+							:booking_token => @booking.booking_token,
+							:cost => @booking.cost,
+							:status => @booking.status
+						}
+						booking_array << booking_json
+						b_json = JSON[booking_array]
+						puts b_json
 						respond_to do |format|
-							format.json {render :json => { status: "true", reason: "booking list"  } }
+							format.json {render :json => { status: "true", booking: booking_json  } }
+						end
+					else
+						respond_to do |format|
+							format.json {render :json => { status: "false", reason: "Invalid booking ID"  } }
 						end
 					end
+				# booking list
+				else
+					bookings = Booking.where(:user_uuid => user.uuid)
+					if bookings
+						
+						bookings.each do |booking|
+							if booking_details(booking.uuid)
+								
+							end
+						end
+						respond_to do |format|
+							format.json {render :json => { status: "true", booking:  "nil"} }
+						end
+					else
 						respond_to do |format|
 							format.json {render :json => { status: "true", reason: "user has no bookings"  } }
 						end
-				else
-					respond_to do |format|
-						format.json {render :json => { status: "true", reason: "user has no bookings"  } }
 					end
 				end
 			else

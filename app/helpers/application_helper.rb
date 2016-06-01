@@ -9,6 +9,6 @@ module ApplicationHelper
       else
         return true
       end
-    end
-
+   end
+   
 end

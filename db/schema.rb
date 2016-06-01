@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424181815) do
+ActiveRecord::Schema.define(version: 20160601143244) do
 
   create_table "bookings", force: true do |t|
     t.string   "uuid",          limit: 20,                    null: false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160424181815) do
     t.string   "status",                   default: "Active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date"
   end
 
   create_table "day_slots", force: true do |t|

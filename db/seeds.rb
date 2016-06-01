@@ -49,10 +49,10 @@ Service.create :uuid => "12345678900987654324",:shop_uuid => "201613301906585d54
 Service.create :uuid => "12345678900987654325",:shop_uuid => "201614301906585d56ea", :service_type => ServiceType.find_by_name("Salon").id, :name => "wwe", :cost => 300
 
 Booking.delete_all
-Booking.create :uuid => "12345678900987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654322", :time_slots => "[5,6]", :booking_token => "cnnnvrdnvrjdwadnnvznjvrnnvrjnzvnnrz", :cost => 300
-Booking.create :uuid => "12345678901987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654323", :time_slots => "[6,7]", :booking_token => "cnnnvrdnvrjnjnnvnnvznjvdwadwjnzvnnrz", :cost => 300
-Booking.create :uuid => "12345678902987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654324", :time_slots => "[8]", :booking_token => "cnnnvrdnvrjnjnnvnnvznjvrnndwadzvnnrz", :cost => 300
-Booking.create :uuid => "12345678903987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654325", :time_slots => "[9-10]", :booking_token => "cnnnvrdnvrjnjnnvnnvznjdwadwnvrjnzvnnrz", :cost => 300
+Booking.create :uuid => "12345678900987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654322", :time_slots => "[5,6]", :booking_token => "cnnnvrdnvrjdwadnnvznjvrnnvrjnzvnnrz", :cost => 300, :date => DateTime.now.utc+5.days
+Booking.create :uuid => "12345678901987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654323", :time_slots => "[6,7]", :booking_token => "cnnnvrdnvrjnjnnvnnvznjvdwadwjnzvnnrz", :cost => 300, :date => DateTime.now.utc+6.days
+Booking.create :uuid => "12345678902987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654324", :time_slots => "[8]", :booking_token => "cnnnvrdnvrjnjnnvnnvznjvrnndwadzvnnrz", :cost => 300, :date => DateTime.now.utc+7.days
+Booking.create :uuid => "12345678903987654321", :user_uuid => "20160424973145asdzx@", :service_uuid => "12345678900987654325", :time_slots => "[9,10]", :booking_token => "cnnnvrdnvrjnjnnvnnvznjdwadwnvrjnzvnnrz", :cost => 300, :date => DateTime.now.utc+8.days
 
 TimeSlot.delete_all
 TimeSlot.create :time_frame => "0-1"

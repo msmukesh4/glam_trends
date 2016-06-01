@@ -67,7 +67,29 @@ class ApplicationController < ActionController::Base
   # def current_ability
   #   @current_ability ||= Ability.new(current_member)
   # end
-
+  def booking_details(id)
+      @booking = Booking.where(:uuid => id).first
+      if !@booking.blank?
+        @service = Service.where(:uuid => @booking.service_uuid).first
+        @service_type = ServiceType.find(@service.service_type)
+        if @service_type.name == "Gym"
+           @shop = Gym.where(:uuid => @service.shop_uuid).first
+        elsif @service_type.name == "Spa"
+           @shop = Spa.where(:uuid => @service.shop_uuid).first
+        elsif @service_type.name == "SportCentre"
+           @shop = SportCentre.where(:uuid => @service.shop_uuid).first
+        elsif @service_type.name == "Salon"
+           @shop = SportCentre.where(:uuid => @service.shop_uuid).first
+        else
+           @reason = "Shop not found"
+           return false
+        end
+      else
+        @reason = "No bookings found"
+        return false
+      end
+      return true
+   end
 
   private
 
@@ -82,23 +104,4 @@ class ApplicationController < ActionController::Base
       end
     end
 
-end
-
-
-
-
-
-class CreateServices < ActiveRecord::Migration
-  def change
-      create_table :services do |t|
-
-        t.string :uuid, :null => false, :limit => 20
-        t.string :shop_uuid, :null => false, :limit => 20
-        t.integer :service_type, :null => false
-        t.string :name
-        t.integer :cost, :null => false
-
-          t.timestamps
-      end
-  end
 end
